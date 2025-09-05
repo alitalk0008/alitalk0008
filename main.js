@@ -10,7 +10,8 @@ import dbConnect from "./utils/dbConnect.js";
 import { dateKeyKST } from "./utils/dateKeyKST.js";
 import mongoose from "mongoose";
 import { assert } from "console";
-import ProductCategories from "./models/productCategories.js";
+// import ProductCategories from "./models/ProductCategories.js";
+import ProductCategories from "./models/ProductCategories.js";
 const API = "https://api-sg.aliexpress.com/sync";
 const METHOD = "aliexpress.affiliate.product.query";
 
@@ -324,7 +325,7 @@ async function fetchByCategory({ categoryId }) {
 
   //
 
-  const listTasks = divided[0].map((item) =>
+  const listTasks = divided[7].map((item) =>
     limit(async () => {
       const cat = await ProductCategories.findOne({
         cId: String(item.cId),
