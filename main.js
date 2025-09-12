@@ -375,7 +375,7 @@ async function fetchByCategory({ categoryId }) {
   const uniqueList = [
     ...new Map(
       productIdList
-        .filter((item) => item.volume >= 50) // 🔹 volume 조건(외부 데이터 키가 volume이면 유지)
+        .filter((item) => item.volume >= 200) // 🔹 volume 조건(외부 데이터 키가 volume이면 유지)
         .map((item) => {
           console.log("item._id:", item._id);
           return [item._id, item];
@@ -499,6 +499,8 @@ async function fetchByCategory({ categoryId }) {
               newSkus.push(item);
               continue;
             }
+            item.sale_price_with_tax = 1000;
+            // 문제 지점 전후로 세분화 try-catch
             let incomingSale;
             try {
               incomingSale = toNum(item?.sale_price_with_tax ?? null);
